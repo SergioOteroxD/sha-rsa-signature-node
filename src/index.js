@@ -81,8 +81,9 @@ function verifySignature() {
     try {
         const publicKey = fs.readFileSync(`keys/${filename}.pem`, 'utf8');
         const verify = crypto.createVerify('SHA256');
-        verify.update(currentMessage);
+        verify.update(message);
         const isValid = verify.verify(publicKey, currentSignature, 'base64');
+        console.log("🚀 ~ rl.question ~ isValid:", isValid)
 
         console.log('\nResultado de la verificacion de la firma:', isValid ? 'Valid ✓' : 'Invalid ✗');
     } catch (error) {
